@@ -20,4 +20,3 @@ Thumbs.db
 # Do not push picture.png / personal photo assets per user instruction
 src/assets/
 public/assets/
-src/data/portfolioData.js

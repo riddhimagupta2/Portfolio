@@ -1,7 +1,3 @@
-// ==============================================================================
-// CINEMATIC DEVELOPER SERIES PORTFOLIO DATA TEMPLATE
-// ==============================================================================
-
 export const portfolioData = {
   personal: {
     name: "RIDDHIMA",
