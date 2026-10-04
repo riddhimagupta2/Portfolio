@@ -15,10 +15,9 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 .idea
+.vercel
 
-# Private Assets & Media (Excluded per privacy requirements)
+# Do not push picture.png / personal photo assets per user instruction
 src/assets/
 public/assets/
-
-# Private Personal Data (Excluded per privacy requirements)
-src/data/portfolioData.local.js
+src/data/portfolioData.js
