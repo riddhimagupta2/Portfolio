@@ -6,48 +6,41 @@ export const portfolioData = {
     roleTag: "FLUTTER DEVELOPER & SOFTWARE ENGINEER",
     rankBadge: "AVAILABLE FOR OPPORTUNITIES",
     titleLine1: "RIDDHIMA",
-    location: "India",
+    location: "Ambala Cantt, Haryana, India",
     email: "riddhimag226@gmail.com",
     phone: "",
     github: "https://github.com/riddhimagupta2",
     linkedin: "https://linkedin.com/in/riddhimagupta22",
     availability: "AVAILABLE FOR OPPORTUNITIES",
-    availabilitySub:
-      "Open to Flutter, software engineering, and AI opportunities",
+    availabilitySub: "Open to Flutter, software engineering, and AI opportunities",
     season: "SEASON 2026",
     portfolioVersion: "PORTFOLIO RELEASE v1.0",
     tickerLeft: "BUILDING • LEARNING • SHIPPING",
-    profilePhotoAlt: "Riddhima Gupta - Featured Developer Portrait",
+    profilePhotoAlt: "Riddhima Gupta - Featured Developer Portrait"
   },
 
   hero: {
     seriesPill: "DEVELOPER SERIES | SEASON 2024-2026",
-
     sideBadges: [
       "FLUTTER DEVELOPER",
-      "OPEN SOURCE CONTRIBUTOR",
+      "GSSOC 2026 CONTRIBUTOR",
     ],
-
     roles: [
       "FLUTTER DEVELOPER",
       "SOFTWARE ENGINEER",
       "MOBILE APPLICATIONS",
-      "OPEN SOURCE CONTRIBUTOR",
+      "OPEN SOURCE CONTRIBUTOR"
     ],
-
     techStackLine:
-      "Flutter • Django REST API • PostgreSQL • Docker & Cloud",
-
+      "Flutter • Django REST API • PostgreSQL • Docker & cloud",
     description:
-      "Flutter Developer building cross-platform applications, integrating REST APIs and Firebase services, and creating reliable, user-friendly digital experiences.",
+      "Flutter Developer Intern building cross-platform applications, integrating REST APIs and Firebase services, and creating reliable, user-friendly digital experiences.",
 
     awardsCard: {
       label: "CORE STACK & ACHIEVEMENTS",
-
       text:
-        "Software engineer working on production applications with Flutter, REST APIs, Firebase, databases, and modern development workflows.",
-
-      achievement: "ACHIEVEMENT — YOUR ACHIEVEMENT HERE",
+        "Flutter Developer Intern at WeSalvator working on the Crescent Academy EdTech platform. 20+ REST APIs integrated and 15+ production issues resolved.",
+      achievement: "1st Runner-Up — Tech4SDG 2.0 Ideathon"
     },
   },
 
@@ -57,44 +50,39 @@ export const portfolioData = {
     headingLine1: "EPISODE SYNOPSIS",
     headingLine2: "ORIGIN & VISION.",
 
+    // Card 01: Cast & Background
     castCard: {
       label: "CAST & BACKGROUND",
       number: "01",
       leadIntro: "I am",
       leadName: "Riddhima Gupta",
-      leadDegree:
-        "a Computer Engineering student and software engineer.",
-
+      leadDegree: "a B.Tech student in Computer Engineering at Maharishi Markandeshwar (Deemed to be University), Mullana.",
       narrative:
-        "My technical journey combines problem-solving with software engineering, translating complex technical requirements into reliable and user-friendly digital experiences.",
-
+        "My technical narrative bridges rigorous algorithmic problem-solving with full-stack software architecture, translating complex backend logic into seamless, high-performance interfaces.",
       tags: [
         "Flutter & Dart",
         "REST APIs & Firebase",
-        "Mobile System Architecture",
-      ],
+        "Mobile System Architecture"
+      ]
     },
 
+    // Card 02: Milestones & Accolades
     milestonesCard: {
       label: "MILESTONES & ACCOLADES",
       number: "02",
-
       milestones: [
-        "YOUR ACHIEVEMENT HERE.",
-        "YOUR OPEN-SOURCE CONTRIBUTION HERE.",
-        "YOUR INTERNSHIP OR EXPERIENCE HERE.",
-        "YOUR MAJOR PROJECT OR TECHNICAL MILESTONE HERE.",
+        "1st Runner-Up in Tech4SDG 2.0 Ideathon competition.",
+        "Open-Source Contributor at GirlScript Summer of Code (GSSoC 2026).",
+        "Flutter Developer Intern at WeSalvator working on Crescent Academy EdTech platform.",
+        "Integrated 20+ REST APIs and resolved 15+ production issues with clean state management."
       ],
-
-      footerTag: "SEASON_01 HIGHLIGHTS",
+      footerTag: "SEASON_01 HIGHLIGHTS"
     },
 
+    // Card 03: Production Tech Stack
     techStackCard: {
       label: "PRODUCTION TECH STACK",
-
-      headline:
-        "Equipped with industry-grade instruments for robust scaling.",
-
+      headline: "Equipped with industry-grade instruments for robust scaling.",
       skills: [
         "FLUTTER",
         "DART",
@@ -104,32 +92,20 @@ export const portfolioData = {
         "DOCKER",
         "GIT & GITHUB",
         "PYTHON",
-        "JAVASCRIPT",
-      ],
+        "JAVASCRIPT"
+      ]
     },
 
     stats: [
-      {
-        value: "99.9%",
-        label: "FLUTTER",
-        note: "MOBILE DEVELOPMENT",
-      },
-      {
-        value: "10+",
-        label: "DSA PROBLEMS",
-        note: "PROBLEM SOLVING",
-      },
-      {
-        value: "10+",
-        label: "CORE PROJECTS",
-        note: "SHIPPED & TESTED",
-      },
+      { value: "99.9%", label: "FLUTTER", note: "MOBILE DEVELOPMENT" },
+      { value: "10+", label: "DSA PROBLEMS", note: "LeetCode & CodeChef" },
+      { value: "10+", label: "CORE PROJECTS", note: "Shipped & Tested" },
       {
         value: "4+",
         label: "PROJECTS",
-        note: "MOBILE & WEB APPLICATIONS",
+        note: "Mobile & Web Applications",
       },
-    ],
+    ]
   },
 
   expertise: {
@@ -137,14 +113,15 @@ export const portfolioData = {
     headingWhite: "DIRECTOR'S CUT",
     headingRed: "TECHNICAL",
     headingWhite2: "CAPABILITIES.",
-
     subtitle:
       "Combining mobile development, backend integration, cloud services, and collaborative software engineering into practical digital products.",
 
     capabilities: [
       {
         number: "01",
+
         title: "Flutter Development",
+
         category: "MOBILE UI / UX",
 
         text:
@@ -165,7 +142,9 @@ export const portfolioData = {
 
       {
         number: "02",
+
         title: "API & Backend Integration",
+
         category: "API & APPLICATION SERVICES",
 
         text:
@@ -183,10 +162,11 @@ export const portfolioData = {
         gradient:
           "from-[#1a0809] via-[#111111] to-[#090909]",
       },
-
       {
         number: "03",
+
         title: "Firebase & Cloud Services",
+
         category: "CLOUD & REAL-TIME DATA",
 
         text:
@@ -206,7 +186,9 @@ export const portfolioData = {
 
       {
         number: "04",
+
         title: "Database & Data Management",
+
         category: "DATABASES",
 
         text:
@@ -226,7 +208,9 @@ export const portfolioData = {
 
       {
         number: "05",
+
         title: "Software Engineering",
+
         category: "ENGINEERING PRACTICES",
 
         text:
@@ -244,17 +228,18 @@ export const portfolioData = {
         gradient:
           "from-[#1f090c] via-[#111111] to-[#090909]",
       },
-
       {
         number: "06",
+
         title: "Open Source & Collaboration",
+
         category: "COMMUNITY & DEVELOPMENT",
 
         text:
           "Contributing to open-source projects and collaborating with maintainers through issues, pull requests, code reviews, and Git-based workflows.",
 
         tech: [
-          "Open Source",
+          "GSSoC",
           "GitHub",
           "Pull Requests",
           "Code Reviews",
@@ -272,14 +257,15 @@ export const portfolioData = {
     episode: "EPISODE 03 | SKILLS ARSENAL",
     headingLine1: "PRODUCTION",
     headingLine2: "TECH STACK.",
-
     subtitle:
       "Technologies and development tools I use to design, build, test and ship software.",
 
     categories: [
       {
         index: "01 / 06",
+
         tag: "MOBILE",
+
         title: "Flutter Development",
 
         desc:
@@ -296,10 +282,11 @@ export const portfolioData = {
 
         tilt: -3,
       },
-
       {
         index: "02 / 06",
+
         tag: "BACKEND",
+
         title: "Django & REST APIs",
 
         desc:
@@ -316,10 +303,11 @@ export const portfolioData = {
 
         tilt: 3,
       },
-
       {
         index: "03 / 06",
+
         tag: "CLOUD",
+
         title: "Firebase & Supabase",
 
         desc:
@@ -335,10 +323,11 @@ export const portfolioData = {
 
         tilt: -2,
       },
-
       {
         index: "04 / 06",
+
         tag: "LANGUAGES",
+
         title: "Programming Languages",
 
         desc:
@@ -356,10 +345,11 @@ export const portfolioData = {
 
         tilt: 2,
       },
-
       {
         index: "05 / 06",
+
         tag: "TOOLS",
+
         title: "Developer Tools",
 
         desc:
@@ -376,10 +366,11 @@ export const portfolioData = {
 
         tilt: -3,
       },
-
       {
         index: "06 / 06",
+
         tag: "ENGINEERING",
+
         title: "Software Engineering",
 
         desc:
@@ -397,7 +388,7 @@ export const portfolioData = {
 
         tilt: 3,
       },
-    ],
+    ]
   },
 
   projects: {
@@ -416,21 +407,18 @@ export const portfolioData = {
       "CLOUD",
       "COMMUNITY",
     ],
-
     list: [
       {
-        id: "project-one",
+        id: "crescent-academy",
         episode: "S01 E01",
         match: "99% MATCH",
         quality: "4K ULTRA HD",
-        category: "MOBILE APPLICATION",
+        category: "EDTECH • MOBILE APPLICATION",
         filterCategory: "MOBILE",
         featured: true,
-
-        title: "Your Project Name",
-
+        title: "Crescent Academy",
         description:
-          "Describe your project here. Explain the problem it solves, its main functionality, and the technology used.",
+          "Production-ready EdTech platform supporting students, instructors, and administrators with authentication, course management, quizzes, notifications, analytics, and live classes.",
 
         tags: [
           "Flutter",
@@ -438,56 +426,49 @@ export const portfolioData = {
           "Firebase",
           "REST APIs",
           "State Management",
-        ],
-
-        liveUrl: "#",
-        githubUrl: "https://github.com/your-username",
-
+        ], liveUrl: "#",
+        githubUrl: "https://uat.wesalvator.com/code/wesalvator/crescentApp",
         highlights:
-          "Add the most important technical achievement or feature of this project.",
+          "Professional internship project involving real-world mobile development, API integration, authentication, notifications, testing, and performance improvements.",
       },
-
       {
-        id: "project-two",
+        id: "doctalk",
         episode: "S01 E02",
         match: "99% MATCH",
         quality: "HD",
-        category: "WEB APPLICATION",
-        filterCategory: "WEB",
+        category: "HEALTHCARE • MOBILE APPLICATION",
+        filterCategory: "MOBILE",
         featured: false,
-
-        title: "Your Second Project",
-
+        title: "DocTalk",
         description:
-          "Describe your second project and explain the functionality, architecture, and technologies used.",
+          "Healthcare communication application enabling doctor-patient appointments and real-time communication with Firebase-powered user management and data services.",
 
         tags: [
-          "React",
-          "JavaScript",
+          "Flutter",
           "Firebase",
-          "REST APIs",
+          "Firebase Auth",
+          "Cloud Firestore",
         ],
 
         liveUrl: "#",
-        githubUrl: "https://github.com/your-username",
+
+        githubUrl: "https://github.com/riddhimagupta2",
 
         highlights:
-          "Add an important feature, result, or technical achievement.",
+          "Healthcare-focused mobile experience with authentication, cloud data management, appointments, and real-time communication.",
       },
 
       {
-        id: "project-three",
+        id: "campus-connect",
         episode: "S01 E03",
         match: "98% MATCH",
         quality: "4K",
-        category: "SOFTWARE PROJECT",
+        category: "CAMPUS • SOCIAL PLATFORM",
         filterCategory: "MOBILE",
         featured: false,
-
-        title: "Your Third Project",
-
+        title: "Campus Connect",
         description:
-          "Describe the project, its purpose, architecture, and user experience.",
+          "Campus community platform designed for announcements, events, and student interactions with authentication, post management, and real-time data synchronization.",
 
         tags: [
           "Flutter",
@@ -497,40 +478,38 @@ export const portfolioData = {
         ],
 
         liveUrl: "#",
-        githubUrl: "https://github.com/your-username",
+
+        githubUrl: "https://github.com/riddhimagupta2",
 
         highlights:
-          "Add the main achievement or technical highlight.",
+          "Designed to improve communication and interaction across a student community.",
       },
-
       {
-        id: "project-four",
+        id: "smart-pantry",
         episode: "S01 E04",
         match: "97% MATCH",
         quality: "HD",
-        category: "PRODUCTIVITY",
+        category: "PRODUCTIVITY • INVENTORY",
         filterCategory: "MOBILE",
         featured: false,
-
-        title: "Your Fourth Project",
-
+        title: "Smart Pantry",
         description:
-          "Describe the project and explain what makes it useful.",
+          "Smart inventory management application for tracking grocery items and pantry stock with expiry tracking, stock alerts, and product categorization.",
 
         tags: [
           "Flutter",
           "Firebase",
           "Cloud Firestore",
-          "Productivity",
+          "Inventory",
         ],
 
         liveUrl: "#",
-        githubUrl: "https://github.com/your-username",
+
+        githubUrl: "https://github.com/riddhimagupta2",
 
         highlights:
-          "Add the main technical highlight of the project.",
+          "Real-time grocery inventory management with expiry tracking and stock alerts.",
       },
-
       {
         id: "productivity-extension",
         episode: "S01 E05",
@@ -539,27 +518,14 @@ export const portfolioData = {
         category: "CLIENT-SIDE ENGINEERING",
         filterCategory: "CLIENT-SIDE",
         featured: false,
-
         title: "Productivity Suite Extension",
-
         description:
           "Custom browser extension engineered with Chrome APIs and modern reactive JavaScript for automated developer workflow tracking, task queues, and context preservation.",
-
-        tags: [
-          "JavaScript",
-          "Chrome APIs",
-          "Tailwind CSS",
-          "HTML5",
-          "Storage API",
-        ],
-
+        tags: ["JavaScript", "Chrome APIs", "Tailwind CSS", "HTML5", "Storage API"],
         liveUrl: "#",
-        githubUrl: "https://github.com/your-username",
-
-        highlights:
-          "Automates developer focus workflows directly within Chromium engines.",
+        githubUrl: "https://github.com/riddhimagupta2",
+        highlights: "Automates developer focus workflows directly within Chromium engines."
       },
-
       {
         id: "ai-diagnostic-engine",
         episode: "S01 E06",
@@ -568,27 +534,14 @@ export const portfolioData = {
         category: "ARTIFICIAL INTELLIGENCE",
         filterCategory: "AI/ML",
         featured: false,
-
         title: "AI & ML Diagnostic Engine",
-
         description:
           "Intelligent data processing pipeline leveraging machine learning predictive models and NLP workflows to classify and parse high-dimensional input streams.",
-
-        tags: [
-          "Python",
-          "Machine Learning",
-          "NLP",
-          "AWS",
-          "FastAPI",
-        ],
-
+        tags: ["Python", "Machine Learning", "NLP", "AWS", "FastAPI"],
         liveUrl: "#",
-        githubUrl: "https://github.com/your-username",
-
-        highlights:
-          "Production inference pipeline with automated feature extraction.",
+        githubUrl: "https://github.com",
+        highlights: "Production inference pipeline with automated feature extraction."
       },
-
       {
         id: "algorithmic-solver-hub",
         episode: "S01 E07",
@@ -597,26 +550,15 @@ export const portfolioData = {
         category: "SOFTWARE DEVELOPMENT",
         filterCategory: "WEB",
         featured: false,
-
         title: "Algorithmic Problem Solver Hub",
-
         description:
           "Interactive repository and documentation of algorithmic solutions focused on data structures, problem solving, and efficient programming techniques.",
-
-        tags: [
-          "Data Structures",
-          "Algorithms",
-          "C++",
-          "Problem Solving",
-        ],
-
+        tags: ["Data Structures", "Algorithms", "C++", "Problem Solving"],
         liveUrl: "#",
-        githubUrl: "https://github.com/your-username",
-
+        githubUrl: "https://github.com/riddhimagupta2",
         highlights:
-          "A collection of optimized solutions demonstrating data structures, algorithms, and efficient problem-solving techniques.",
+          "A collection of optimized solutions demonstrating data structures, algorithms, and efficient problem-solving techniques."
       },
-
       {
         id: "portfolio",
         episode: "S01 E08",
@@ -625,33 +567,22 @@ export const portfolioData = {
         category: "FRONTEND & MOTION DESIGN",
         filterCategory: "WEB",
         featured: true,
-
         title: "Personal Developer Portfolio",
-
         description:
           "A modern developer portfolio built with React, Tailwind CSS, and GSAP, featuring smooth scroll animations, sticky stacked cards, interactive hover effects, responsive layouts, and a polished dark UI.",
-
-        tags: [
-          "React",
-          "GSAP",
-          "Tailwind CSS",
-          "Vite",
-          "JavaScript",
-        ],
-
+        tags: ["React", "GSAP", "Tailwind CSS", "Vite", "JavaScript"],
         liveUrl: "#",
-        githubUrl: "https://github.com/your-username",
-
+        githubUrl: "https://github.com/riddhimagupta2",
         highlights:
-          "Interactive portfolio featuring GSAP ScrollTrigger animations, sticky card interactions, responsive design, smooth transitions, and modern UI effects.",
-      },
-    ],
+          "Interactive portfolio featuring GSAP ScrollTrigger animations, sticky card interactions, responsive design, smooth transitions, and modern UI effects."
+      }
+    ]
   },
-
   experience: {
     episode: "EPISODE 05 | EXPERIENCE",
 
     headingLine1: "THE",
+
     headingLine2: "JOURNEY.",
 
     subtitle:
@@ -659,16 +590,18 @@ export const portfolioData = {
 
     list: [
       {
-        period: "YOUR START DATE — PRESENT",
 
-        role: "SOFTWARE DEVELOPER",
 
-        company: "YOUR COMPANY",
+        period: "MAY 2026 — PRESENT",
+
+        role: "FLUTTER DEVELOPER INTERN",
+
+        company: "WESALVATOR",
 
         location: "REMOTE",
 
         description:
-          "Describe your professional responsibilities, projects, technical contributions, and impact here.",
+          "Developing and maintaining cross-platform mobile applications using Flutter and Dart. Working on the Crescent Academy EdTech platform across Student, Instructor, and Admin modules.",
 
         technologies: [
           "Flutter",
@@ -676,42 +609,44 @@ export const portfolioData = {
           "REST APIs",
           "Firebase",
           "Authentication",
+          "Notifications",
           "State Management",
         ],
       },
 
       {
-        period: "YOUR START DATE — PRESENT",
+        period: "MAY 2026 — PRESENT",
 
-        role: "OPEN SOURCE CONTRIBUTOR",
+        role: "GSSOC 2026 CONTRIBUTOR",
 
-        company: "OPEN SOURCE",
+        company: "GIRLSCRIPT SUMMER OF CODE",
 
-        location: "REMOTE",
+        location: "OPEN SOURCE",
 
         description:
-          "Describe your open-source contributions, pull requests, issues, code reviews, and collaborative development work.",
+          "Contributing to open-source projects involving Flutter, React, Python, and web technologies while working on UI improvements, validation, feature enhancements, testing, and code refactoring.",
 
         technologies: [
+          "Flutter",
+          "React",
+          "Python",
           "Git",
           "GitHub",
           "Pull Requests",
-          "Code Reviews",
-          "Collaboration",
         ],
       },
 
       {
-        period: "YOUR START DATE — PRESENT",
+        period: "SEPT 2024 — PRESENT",
 
-        role: "TECHNICAL COMMUNITY MEMBER",
+        role: "CORE MEMBER",
 
-        company: "YOUR ORGANIZATION",
+        company: "GDG ON CAMPUS MM(DU) MULLANA",
 
-        location: "YOUR LOCATION",
+        location: "HARYANA, INDIA",
 
         description:
-          "Describe your involvement in technical communities, workshops, coding events, hackathons, and leadership activities.",
+          "Organizing technical workshops, coding events, and hackathons while coordinating volunteers, managing event logistics, and encouraging student participation in developer communities.",
 
         technologies: [
           "Community",
@@ -726,11 +661,9 @@ export const portfolioData = {
 
   contact: {
     episode: "EPISODE 05 | FINAL SIGNAL",
-
     headingLine1: "LET'S BUILD",
     headingLine2: "SOMETHING",
     headingLine3: "GREAT.",
-
     subtitle:
       "Have an idea, project, collaboration, internship or software engineering opportunity? Send a direct signal.",
 
@@ -762,39 +695,15 @@ export const portfolioData = {
   ],
 
   navLinks: [
-    {
-      name: "HOME",
-      href: "#home",
-    },
-
-    {
-      name: "ABOUT",
-      href: "#about",
-    },
-
-    {
-      name: "EXPERTISE",
-      href: "#expertise",
-    },
-
-    {
-      name: "SKILLS",
-      href: "#skills",
-    },
-
-    {
-      name: "PROJECTS",
-      href: "#projects",
-    },
-
+    { name: "HOME", href: "#home" },
+    { name: "ABOUT", href: "#about" },
+    { name: "EXPERTISE", href: "#expertise" },
+    { name: "SKILLS", href: "#skills" },
+    { name: "PROJECTS", href: "#projects" },
     {
       name: "EXPERIENCE",
       href: "#experience",
     },
-
-    {
-      name: "CONTACT",
-      href: "#contact",
-    },
-  ],
+    { name: "CONTACT", href: "#contact" }
+  ]
 };
