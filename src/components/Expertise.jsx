@@ -29,28 +29,22 @@ const Expertise = () => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const ctx = gsap.context(() => {
-      cards.forEach((card, index) => {
-        if (index >= cards.length - 1) return;
-
-        const nextCard = cards[index + 1];
-        const subsequentCard = cards[index + 2];
-
-        const tl = gsap.timeline({
+      gsap.fromTo(
+        cards,
+        { y: 35, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          stagger: 0.12,
+          ease: 'power3.out',
           scrollTrigger: {
-            trigger: nextCard,
-            start: 'top 85%',
-            endTrigger: subsequentCard || nextCard,
-            end: subsequentCard ? 'top 140px' : 'top 110px',
-            scrub: true
+            trigger: container,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
           }
-        });
-
-        tl.to(card, { scale: 0.95, opacity: 0.7, filter: 'blur(2.5px)', y: -10, ease: 'none', duration: 1 });
-
-        if (subsequentCard) {
-          tl.to(card, { scale: 0.91, opacity: 0.48, filter: 'blur(4px)', y: -18, ease: 'none', duration: 1 });
         }
-      });
+      );
     }, containerRef);
 
     return () => ctx.revert();
@@ -73,9 +67,6 @@ const Expertise = () => {
         <div className="space-y-3 text-left pb-8 mb-10 sm:mb-12 border-b border-white/10">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <SectionBadge label={portfolioData.expertise.episode} />
-            <span className="hidden sm:inline-block font-mono text-[10px] text-white/40 tracking-[0.2em] uppercase">
-              STICKY OVERLAPPING STACK
-            </span>
           </div>
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
@@ -91,18 +82,13 @@ const Expertise = () => {
           </div>
         </div>
 
-        <div className="cards-stack-wrapper relative w-full">
+        <div className="relative w-full space-y-6 sm:space-y-8">
           {capabilities.map((item, index) => (
             <div
               key={item.number}
               ref={(el) => { cardRefs.current[index] = el; }}
               onMouseMove={handleMouseMove}
-              style={{
-                top: `calc(clamp(75px, 9vh, 95px) + ${index * 16}px)`,
-                zIndex: 10 + index * 10,
-                transformOrigin: '50% 0%'
-              }}
-              className={`group sticky w-full mb-[14vh] sm:mb-[16vh] md:mb-[18vh] last:mb-12 p-6 sm:p-8 md:p-9 rounded-2xl sm:rounded-3xl bg-gradient-to-r ${item.gradient} border border-white/12 hover:border-[#E50914]/50 transition-colors duration-300 shadow-[0_25px_60px_rgba(0,0,0,0.95)] backdrop-blur-xl flex flex-col justify-between overflow-hidden cursor-default`}
+              className={`group relative w-full p-6 sm:p-8 md:p-9 rounded-2xl sm:rounded-3xl bg-gradient-to-r ${item.gradient} border border-white/12 hover:border-[#E50914]/50 transition-all duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.85)] hover:shadow-[0_20px_50px_rgba(229,9,20,0.25)] hover:-translate-y-1 backdrop-blur-xl flex flex-col justify-between overflow-hidden cursor-default`}
             >
               <MouseSpotlight />
 

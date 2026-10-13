@@ -30,7 +30,7 @@ const Contact = () => {
   const [formTilt, setFormTilt] = useState({ rotateX: 0, rotateY: 0, mouseX: 0, mouseY: 0 });
   const [telemetryTilt, setTelemetryTilt] = useState({ rotateX: 0, rotateY: 0, mouseX: 0, mouseY: 0 });
 
-  // Live fluctuating latency for tactical radar realism
+  // Live fluctuating latency for telemetry realism
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveLatency(Math.floor(Math.random() * 8) + 18); // 18ms - 25ms
@@ -271,7 +271,7 @@ const Contact = () => {
       <div className="absolute top-1/4 -right-10 text-[20vw] font-display font-black text-white/[0.02] pointer-events-none tracking-tighter leading-none select-none z-0">
         EPISODE 06
       </div>
-      <div className="absolute bottom-10 left-10 w-[550px] h-[550px] bg-[#E50914]/12 rounded-full blur-[200px] pointer-events-none"></div>
+      <div className="absolute bottom-10 left-10 w-[550px] h-[550px] bg-[#E50914]/10 rounded-full blur-[200px] pointer-events-none"></div>
       <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-[#E50914]/8 rounded-full blur-[180px] pointer-events-none"></div>
 
       <div className="relative z-10 max-w-6xl mx-auto w-full space-y-12 sm:space-y-16">
@@ -307,7 +307,7 @@ const Contact = () => {
             <div
               className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               style={{
-                background: `radial-gradient(500px circle at ${formTilt.mouseX}px ${formTilt.mouseY}px, rgba(229,9,20,0.14), transparent 60%)`
+                background: `radial-gradient(500px circle at ${formTilt.mouseX}px ${formTilt.mouseY}px, rgba(229,9,20,0.15), transparent 60%)`
               }}
             ></div>
 
@@ -446,7 +446,7 @@ const Contact = () => {
                   {/* High-tech Loading Bar */}
                   <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
                     <div
-                      className="bg-gradient-to-r from-[#E50914] to-red-400 h-full transition-all duration-500 rounded-full"
+                      className="bg-gradient-to-r from-[#E50914] to-orange-500 h-full transition-all duration-500 rounded-full"
                       style={{ width: `${loadingStep * 33.3}%` }}
                     ></div>
                   </div>
@@ -484,7 +484,7 @@ const Contact = () => {
                         href={getGmailComposeUrl()}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-3.5 py-2 rounded-lg bg-red-600 hover:bg-red-500 text-white font-mono text-[11px] font-bold tracking-wider inline-flex items-center gap-1.5 transition-colors shadow-md"
+                        className="px-3.5 py-2 rounded-lg bg-[#E50914] hover:bg-[#b80710] text-white font-mono text-[11px] font-bold tracking-wider inline-flex items-center gap-1.5 transition-colors shadow-md"
                       >
                         <span>SEND DIRECTLY VIA GMAIL</span>
                         <span>→</span>
@@ -507,7 +507,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="group w-full py-4 rounded-xl bg-[#E50914] hover:bg-[#FF1A1A] disabled:opacity-50 text-white font-mono text-xs font-bold tracking-[0.25em] uppercase transition-all duration-300 shadow-[0_0_25px_rgba(229,9,20,0.6)] hover:shadow-[0_0_40px_rgba(255,26,26,0.9)] hover:scale-[1.01] active:scale-[0.99] border border-red-500/50 flex items-center justify-center gap-3 cursor-pointer"
+                  className="group w-full py-4 rounded-xl bg-[#E50914] hover:bg-[#b80710] disabled:opacity-50 text-white font-mono text-xs font-bold tracking-[0.25em] uppercase transition-all duration-300 shadow-[0_0_25px_rgba(229,9,20,0.6)] hover:shadow-[0_0_40px_rgba(229,9,20,0.9)] hover:scale-[1.01] active:scale-[0.99] border border-red-500/50 flex items-center justify-center gap-3 cursor-pointer"
                 >
                   {isLoading ? (
                     <span className="flex items-center gap-2">
@@ -549,7 +549,7 @@ const Contact = () => {
             </form>
           </div>
 
-          {/* RIGHT COLUMN: SIGNAL TELEMETRY & TACTICAL RADAR (5 COLS) */}
+          {/* RIGHT COLUMN: SIGNAL TELEMETRY & DIRECT FREQUENCY (5 COLS) */}
           <div
             ref={telemetryCardRef}
             onMouseMove={handleMouseMoveTelemetry}
@@ -560,7 +560,7 @@ const Contact = () => {
             }}
             className="lg:col-span-5 space-y-6"
           >
-            {/* Live Telemetry Card with Radar Glow & Tactical Radar Animation */}
+            {/* Live Telemetry Card with Red Glow */}
             <div className="p-6 sm:p-8 rounded-3xl bg-[#0c0c0c] border border-white/10 space-y-6 relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.8)] group hover:border-[#E50914]/40 transition-colors">
               {/* Dynamic cursor spotlight glow */}
               <div
@@ -572,10 +572,6 @@ const Contact = () => {
 
               {/* Status Header */}
               <div className="flex items-center justify-between pb-3 border-b border-white/10 relative z-10">
-                <span className="font-mono text-xs text-[#E50914] font-bold tracking-widest uppercase flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#E50914] animate-ping"></span>
-                  // RADAR TELEMETRY
-                </span>
                 <div className="flex items-center gap-2">
                   <span className="relative flex h-2.5 w-2.5">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -585,54 +581,8 @@ const Contact = () => {
                     {portfolioData.personal.availability}
                   </span>
                 </div>
-              </div>
-
-              {/* TACTICAL ROTATING RADAR ANIMATION DISPLAY */}
-              <div className="relative w-full h-44 rounded-2xl bg-[#080808] border border-white/10 flex items-center justify-center overflow-hidden">
-                {/* Tactical Radar Grid Lines */}
-                <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:16px_16px]"></div>
-
-                {/* Concentric Radar Rings */}
-                <div className="absolute w-36 h-36 rounded-full border border-[#E50914]/20"></div>
-                <div className="absolute w-24 h-24 rounded-full border border-[#E50914]/30"></div>
-                <div className="absolute w-12 h-12 rounded-full border border-[#E50914]/40"></div>
-
-                {/* Crosshairs */}
-                <div className="absolute w-full h-[1px] bg-white/10"></div>
-                <div className="absolute h-full w-[1px] bg-white/10"></div>
-
-                {/* Sweeping 360-degree Radar Beam Animation */}
-                <div
-                  className="absolute w-36 h-36 rounded-full animate-radar-sweep pointer-events-none"
-                  style={{
-                    background: 'conic-gradient(from 0deg, rgba(229,9,20,0.55) 0deg, rgba(229,9,20,0.15) 30deg, transparent 60deg)'
-                  }}
-                ></div>
-
-                {/* Blinking Radar Target Blips */}
-                <div className="absolute top-10 right-14 w-2 h-2 rounded-full bg-emerald-400 animate-ping"></div>
-                <div className="absolute top-10 right-14 w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"></div>
-
-                <div className="absolute bottom-12 left-16 w-2 h-2 rounded-full bg-[#E50914] animate-ping" style={{ animationDelay: '1.2s' }}></div>
-                <div className="absolute bottom-12 left-16 w-1.5 h-1.5 rounded-full bg-[#E50914] shadow-[0_0_8px_#E50914]"></div>
-
-                {/* Center Core Beacon */}
-                <div className="relative z-10 w-3 h-3 rounded-full bg-[#E50914] shadow-[0_0_15px_#E50914] flex items-center justify-center">
-                  <div className="w-1 h-1 rounded-full bg-white"></div>
-                </div>
-
-                {/* Radar HUD Corner Tags */}
-                <span className="absolute top-2 left-3 font-mono text-[9px] text-white/40 tracking-wider">
-                  SAT_UPLINK: ACTIVE
-                </span>
-                <span className="absolute top-2 right-3 font-mono text-[9px] text-[#E50914] tracking-wider">
+                <span className="font-mono text-[10px] text-white/40 tracking-wider">
                   {activeLatency}ms LATENCY
-                </span>
-                <span className="absolute bottom-2 left-3 font-mono text-[9px] text-white/40 tracking-wider">
-                  COORD: 28.6139° N, 77.2090° E
-                </span>
-                <span className="absolute bottom-2 right-3 font-mono text-[9px] text-emerald-400 tracking-wider">
-                  UPLINK 100%
                 </span>
               </div>
 
