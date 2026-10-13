@@ -21,14 +21,11 @@ const Projects = () => {
   const neonRingRef = useRef(null);
   const cardElementsRef = useRef([]);
 
-  // Non-desktop circular orbit refs
-  const orbitStageRef = useRef(null);
-  const orbitCardRefs = useRef([]);
-  const orbitAngle = useRef(0);
-  const orbitRaf = useRef(null);
-  const isDraggingOrbit = useRef(false);
-  const dragStartX = useRef(0);
-  const dragStartAngle = useRef(0);
+  // Mobile carousel & view states
+  const [mobileIndex, setMobileIndex] = useState(0);
+  const [mobileView, setMobileView] = useState('slider'); // 'slider' | 'grid'
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   const allProjects = portfolioData.projects.list;
 
@@ -199,102 +196,44 @@ const Projects = () => {
     return () => ctx.revert();
   }, [activeTab, isDesktop]);
 
-  // NON-DESKTOP: Circular Orbit Animation around center Archive Slot
-  const updateCircularOrbit = useCallback(() => {
-    if (!orbitStageRef.current) return;
-    const stageWidth = orbitStageRef.current.clientWidth;
-    const stageHeight = orbitStageRef.current.clientHeight;
+  // Mobile swipe & navigation handlers
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    setMobileIndex(0);
+  };
 
-    const Rx = Math.min(340, Math.max(180, stageWidth * 0.4));
-    const Ry = Math.min(220, Math.max(130, stageHeight * 0.32));
+  const handleTouchStart = (e) => {
+    if (!e.touches || !e.touches[0]) return;
+    touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = e.touches[0].clientX;
+  };
 
-    const total = allProjects.length;
+  const handleTouchMove = (e) => {
+    if (!e.touches || !e.touches[0]) return;
+    touchEndX.current = e.touches[0].clientX;
+  };
 
-    allProjects.forEach((_, i) => {
-      const el = orbitCardRefs.current[i];
-      if (!el) return;
-
-      // Calculate angle for card i along the 360° circle
-      const angle = orbitAngle.current + i * (360 / total);
-      const rad = (angle * Math.PI) / 180;
-
-      const x = Rx * Math.cos(rad);
-      const y = Ry * Math.sin(rad);
-
-      // Depth layering: sin(rad) > 0 is in front of center archive slot, < 0 is behind
-      const sinVal = Math.sin(rad);
-      const scale = 0.84 + 0.16 * Math.max(0, (sinVal + 1) / 2);
-      const opacity = 0.45 + 0.55 * Math.max(0, (sinVal + 1) / 2);
-      const zIndex = Math.round(20 + 25 * sinVal);
-
-      el.style.transform = `translate3d(calc(-50% + ${x}px), calc(-50% + ${y}px), 0) scale(${scale})`;
-      el.style.opacity = `${opacity}`;
-      el.style.zIndex = `${zIndex}`;
-      el.style.pointerEvents = opacity > 0.6 ? 'auto' : 'none';
-    });
-  }, [allProjects]);
-
-  useEffect(() => {
-    if (isDesktop) return;
-
-    let isHovered = false;
-
-    const loop = () => {
-      if (!isDraggingOrbit.current && !isHovered) {
-        // Continuous slow circular orbital motion
-        orbitAngle.current = (orbitAngle.current + 0.22) % 360;
-        updateCircularOrbit();
-      }
-      orbitRaf.current = requestAnimationFrame(loop);
-    };
-
-    orbitRaf.current = requestAnimationFrame(loop);
-    updateCircularOrbit();
-
-    const stageEl = orbitStageRef.current;
-    const onEnter = () => {
-      isHovered = true;
-    };
-    const onLeave = () => {
-      isHovered = false;
-    };
-
-    if (stageEl) {
-      stageEl.addEventListener('mouseenter', onEnter);
-      stageEl.addEventListener('mouseleave', onLeave);
+  const handleTouchEnd = (listLength) => {
+    if (!listLength) return;
+    const diff = touchStartX.current - touchEndX.current;
+    const threshold = 40;
+    if (diff > threshold) {
+      // Swiped left -> next project
+      setMobileIndex((prev) => (prev + 1) % listLength);
+    } else if (diff < -threshold) {
+      // Swiped right -> prev project
+      setMobileIndex((prev) => (prev - 1 + listLength) % listLength);
     }
-
-    return () => {
-      if (orbitRaf.current) cancelAnimationFrame(orbitRaf.current);
-      if (stageEl) {
-        stageEl.removeEventListener('mouseenter', onEnter);
-        stageEl.removeEventListener('mouseleave', onLeave);
-      }
-    };
-  }, [isDesktop, updateCircularOrbit]);
-
-  // Orbit Pointer Drag / Swipe Handlers (Mobile & Tablet)
-  const handleOrbitPointerDown = (e) => {
-    isDraggingOrbit.current = true;
-    dragStartX.current = e.clientX || (e.touches && e.touches[0].clientX) || 0;
-    dragStartAngle.current = orbitAngle.current;
   };
 
-  const handleOrbitPointerMove = (e) => {
-    if (!isDraggingOrbit.current) return;
-    const clientX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
-    const deltaX = clientX - dragStartX.current;
-    orbitAngle.current = dragStartAngle.current + deltaX * 0.4;
-    updateCircularOrbit();
+  const handleNextProject = (listLength) => {
+    if (!listLength) return;
+    setMobileIndex((prev) => (prev + 1) % listLength);
   };
 
-  const handleOrbitPointerUp = () => {
-    isDraggingOrbit.current = false;
-  };
-
-  const rotateOrbitStep = (direction) => {
-    orbitAngle.current += direction * 45;
-    updateCircularOrbit();
+  const handlePrevProject = (listLength) => {
+    if (!listLength) return;
+    setMobileIndex((prev) => (prev - 1 + listLength) % listLength);
   };
 
   // Render 3x3 Desktop Grid Items
@@ -423,24 +362,22 @@ const Projects = () => {
             />
           </div>
 
-          {/* CATEGORY FILTER TABS (Desktop) */}
-          {isDesktop && (
-            <div className="flex flex-wrap items-center gap-2">
-              {portfolioData.projects.filterTabs.map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`px-3.5 py-1.5 rounded-full font-mono text-xs tracking-widest uppercase transition-all duration-300 cursor-pointer ${
-                    activeTab === tab
-                      ? 'bg-[#E50914] text-white font-bold shadow-[0_0_15px_rgba(229,9,20,0.6)] scale-105 border border-red-500'
-                      : 'bg-[#111111] text-white/60 hover:text-white border border-white/10 hover:border-white/20'
-                  }`}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-          )}
+          {/* CATEGORY FILTER TABS (Responsive for both Desktop & Mobile) */}
+          <div className="flex flex-wrap items-center gap-2">
+            {portfolioData.projects.filterTabs.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => handleTabChange(tab)}
+                className={`px-3 sm:px-3.5 py-1.5 rounded-full font-mono text-[11px] sm:text-xs tracking-widest uppercase transition-all duration-300 cursor-pointer ${
+                  activeTab === tab
+                    ? 'bg-[#E50914] text-white font-bold shadow-[0_0_15px_rgba(229,9,20,0.6)] scale-105 border border-red-500'
+                    : 'bg-[#111111] text-white/60 hover:text-white border border-white/10 hover:border-white/20'
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* 1. FULL DESKTOP VIEW: 3x3 GRID WITH BURST-OUT ANIMATION */}
@@ -452,83 +389,121 @@ const Projects = () => {
             {renderDesktopGridItems()}
           </div>
         ) : (
-          /* 2. NON-DESKTOP (TABLET & MOBILE): ARCHIVE SLOT IN CENTER + 360° CIRCULAR ORBITING CARDS */
+          /* 2. NON-DESKTOP (MOBILE & TABLET): ZERO-OVERLAP CAROUSEL & GRID MODES */
           <div className="space-y-6">
-            <div
-              ref={orbitStageRef}
-              onMouseDown={handleOrbitPointerDown}
-              onMouseMove={handleOrbitPointerMove}
-              onMouseUp={handleOrbitPointerUp}
-              onTouchStart={handleOrbitPointerDown}
-              onTouchMove={handleOrbitPointerMove}
-              onTouchEnd={handleOrbitPointerUp}
-              className="relative w-full h-[540px] sm:h-[600px] cursor-grab active:cursor-grabbing flex items-center justify-center overflow-visible select-none"
-            >
-              {/* Central ARCHIVE_SLOTS Card */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] sm:w-[240px] min-h-[250px] sm:min-h-[280px] p-5 rounded-2xl sm:rounded-3xl bg-[#0c0c0c] border border-[#E50914]/60 shadow-[0_0_40px_rgba(229,9,20,0.25)] flex flex-col items-center justify-center z-25 pointer-events-auto select-none">
-                {/* Top Folder Tab */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-3 bg-[#161616] border-t border-x border-white/15 rounded-t-lg"></div>
-
-                {/* Radar Dot */}
-                <div className="relative flex items-center justify-center mb-3">
-                  <span className="w-9 h-9 rounded-full border border-[#E50914]/60 flex items-center justify-center bg-[#E50914]/15 shadow-[0_0_15px_#E50914] animate-pulse">
-                    <span className="w-3 h-3 rounded-full bg-[#E50914] shadow-[0_0_8px_#E50914]"></span>
-                  </span>
-                  <span className="absolute w-12 h-12 rounded-full border border-[#E50914]/30 animate-ping"></span>
-                </div>
-
-                <h3 className="font-mono text-base sm:text-lg font-black text-[#E50914] tracking-[0.22em] uppercase drop-shadow-[0_0_10px_rgba(229,9,20,0.5)]">
-                  ARCHIVE_SLOTS
-                </h3>
-                <span className="font-mono text-[9px] text-white/40 tracking-[0.18em] block uppercase mt-0.5">
-                  REPOSITORY_VAULT
-                </span>
-
-                <div className="w-20 h-0.5 rounded-full bg-white/10 my-3"></div>
-
-                <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#111111] border border-white/10 text-white/70 font-mono text-[9px] tracking-widest uppercase">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                  <span>08 IN ORBIT</span>
-                </div>
-              </div>
-
-              {/* Surrounding Orbiting Project Cards */}
-              {allProjects.map((project, i) => (
-                <div
-                  key={project.id}
-                  ref={(el) => {
-                    orbitCardRefs.current[i] = el;
-                  }}
-                  className="absolute left-1/2 top-1/2 w-[240px] sm:w-[280px] min-h-[280px] sm:min-h-[300px] will-change-transform cursor-pointer transition-shadow"
-                >
-                  <ProjectCard project={project} />
-                </div>
-              ))}
-            </div>
-
-            {/* Orbit Navigation Controls for Touch / Tablet */}
-            <div className="flex items-center justify-between pt-2">
-              <span className="font-mono text-[10.5px] text-white/50 tracking-wider uppercase">
-                SWIPE OR DRAG TO ROTATE
-              </span>
-
+            {/* Mobile Top Control Bar */}
+            <div className="flex items-center justify-between gap-3 p-3.5 rounded-2xl bg-[#0c0c0c] border border-white/10 shadow-lg">
+              {/* Vault Status Indicator */}
               <div className="flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E50914] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E50914]"></span>
+                </span>
+                <span className="font-mono text-[11px] text-white/80 font-bold tracking-wider uppercase">
+                  {mobileView === 'slider'
+                    ? `RECORD [ 0${Math.min(mobileIndex + 1, filteredProjects.length)} / 0${filteredProjects.length} ]`
+                    : `VAULT [ ${filteredProjects.length} TOTAL ]`}
+                </span>
+              </div>
+
+              {/* View Mode Toggle: SLIDER vs ALL */}
+              <div className="flex items-center p-1 rounded-xl bg-black/60 border border-white/10 font-mono text-[10.5px]">
                 <button
-                  onClick={() => rotateOrbitStep(1)}
-                  aria-label="Rotate orbit left"
-                  className="px-3 py-1.5 rounded-lg bg-[#111111] border border-white/15 text-white/80 hover:text-white hover:border-[#E50914] transition-all font-mono text-xs"
+                  onClick={() => setMobileView('slider')}
+                  className={`px-3 py-1 rounded-lg transition-all font-bold cursor-pointer ${
+                    mobileView === 'slider'
+                      ? 'bg-[#E50914] text-white shadow-[0_0_10px_#E50914]'
+                      : 'text-white/50 hover:text-white'
+                  }`}
                 >
-                  ↺ ROTATE
+                  SLIDER
                 </button>
                 <button
-                  onClick={() => rotateOrbitStep(-1)}
-                  aria-label="Rotate orbit right"
-                  className="px-3 py-1.5 rounded-lg bg-[#111111] border border-white/15 text-white/80 hover:text-white hover:border-[#E50914] transition-all font-mono text-xs"
+                  onClick={() => setMobileView('grid')}
+                  className={`px-3 py-1 rounded-lg transition-all font-bold cursor-pointer ${
+                    mobileView === 'grid'
+                      ? 'bg-[#E50914] text-white shadow-[0_0_10px_#E50914]'
+                      : 'text-white/50 hover:text-white'
+                  }`}
                 >
-                  ROTATE ↻
+                  ALL
                 </button>
               </div>
             </div>
+
+            {filteredProjects.length === 0 ? (
+              <div className="py-12 text-center font-mono text-xs text-white/40 border border-white/10 rounded-2xl bg-[#0c0c0c]">
+                NO PROJECTS FOUND IN THIS CATEGORY.
+              </div>
+            ) : mobileView === 'slider' ? (
+              /* SLIDER MODE: SINGLE ACTIVE CARD WITH ZERO OVERLAP */
+              <div className="space-y-5">
+                <div
+                  onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={() => handleTouchEnd(filteredProjects.length)}
+                  className="w-full max-w-sm sm:max-w-md mx-auto transition-transform duration-300"
+                >
+                  {filteredProjects[mobileIndex % filteredProjects.length] && (
+                    <ProjectCard
+                      project={filteredProjects[mobileIndex % filteredProjects.length]}
+                    />
+                  )}
+                </div>
+
+                {/* Slider Controls */}
+                <div className="flex flex-col items-center gap-3 pt-1">
+                  <div className="flex items-center justify-between w-full max-w-sm sm:max-w-md px-1">
+                    <button
+                      onClick={() => handlePrevProject(filteredProjects.length)}
+                      aria-label="Previous project"
+                      className="px-4 py-2 rounded-xl bg-[#111111] hover:bg-[#1a1a1a] border border-white/15 hover:border-[#E50914] text-white/90 hover:text-white font-mono text-xs font-bold tracking-wider transition-all flex items-center gap-2 cursor-pointer shadow-md"
+                    >
+                      <span>←</span>
+                      <span>PREV</span>
+                    </button>
+
+                    {/* Dot Indicators */}
+                    <div className="flex items-center gap-1.5 flex-wrap justify-center max-w-[180px]">
+                      {filteredProjects.map((_, dotIdx) => (
+                        <button
+                          key={dotIdx}
+                          onClick={() => setMobileIndex(dotIdx)}
+                          aria-label={`Jump to project ${dotIdx + 1}`}
+                          className={`h-2 rounded-full transition-all cursor-pointer ${
+                            dotIdx === (mobileIndex % filteredProjects.length)
+                              ? 'w-6 bg-[#E50914] shadow-[0_0_8px_#E50914]'
+                              : 'w-2 bg-white/20 hover:bg-white/50'
+                          }`}
+                        />
+                      ))}
+                    </div>
+
+                    <button
+                      onClick={() => handleNextProject(filteredProjects.length)}
+                      aria-label="Next project"
+                      className="px-4 py-2 rounded-xl bg-[#111111] hover:bg-[#1a1a1a] border border-white/15 hover:border-[#E50914] text-white/90 hover:text-white font-mono text-xs font-bold tracking-wider transition-all flex items-center gap-2 cursor-pointer shadow-md"
+                    >
+                      <span>NEXT</span>
+                      <span>→</span>
+                    </button>
+                  </div>
+
+                  <span className="font-mono text-[10px] text-white/40 tracking-widest uppercase">
+                    SWIPE OR USE BUTTONS TO NAVIGATE
+                  </span>
+                </div>
+              </div>
+            ) : (
+              /* GRID MODE: CLEAN RESPONSIVE STACK (ZERO OVERLAP) */
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full">
+                {filteredProjects.map((project) => (
+                  <div key={project.id} className="w-full">
+                    <ProjectCard project={project} />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>
